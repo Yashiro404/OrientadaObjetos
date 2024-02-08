@@ -1,0 +1,57 @@
+#include <iostream>
+#include <stdlib.h>
+using namespace std;
+
+class Videojuegos{
+public:
+    string nombre;
+    Juego(string);
+    void MostrarJuego();
+};
+
+class Precio : public Juego{
+public:
+    float precio;
+    Precio(string, float);
+    void mostrarPrecio();
+};
+
+class Codigo : public Precio{
+public:
+    string codigoproducto;
+    Codigo(string, float, string);
+    void mostrarCodigo();
+};
+
+int main(){
+    Codigo juego0("Halo",500,"3461546");
+    juego0.mostrarCodigo();
+
+    return 0;
+}
+
+Juego::Juego(string _nombre){
+    nombre = _nombre;
+}
+
+Precio::Precio(string _nombre,float _precio):Juego(_nombre){
+    precio = _precio;
+}
+
+Codigo::Codigo(string _nombre, float _precio, string _codigoproducto):Precio(_nombre, _precio){
+    codigoproducto = _codigoproducto;
+}
+
+void Juego::mostrarJuego(){
+    cout<<"Nombre: "<< nombre << endl;
+}
+
+void Precio::mostrarPrecio(){
+    mostrarJuego();
+    cout<<"Precio: "<< precio << endl;
+}
+
+void Codigo::mostrarCodigo(){
+    mostrarPrecio();
+    cout<<"Codigo: "<< codigoproducto << endl;
+}
